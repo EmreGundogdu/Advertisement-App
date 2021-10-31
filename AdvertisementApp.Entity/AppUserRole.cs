@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AdvertisementApp.Entity
 {
-    public class AppUserRole:BaseEntity
+    public class AppUserRole : BaseEntity
     {
         public string Username { get; set; }
         public string Password { get; set; }
