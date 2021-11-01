@@ -1,4 +1,5 @@
-﻿using AdvertisementApp.Entity;
+﻿using AdvertisementApp.DataAccess.Configurations;
+using AdvertisementApp.Entity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -23,5 +24,17 @@ namespace AdvertisementApp.DataAccess.Context
         public DbSet<Gender> Genders { get; set; }
         public DbSet<MilitaryStatus> militaryStatuses { get; set; }
         public DbSet<ProvidedServices> ProvidedServices { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new AdvertisementAppUserConfiguration());
+            modelBuilder.ApplyConfiguration(new AdverstisementAppUserStatusConfigration());
+            modelBuilder.ApplyConfiguration(new AdvertisementConfiguration());
+            modelBuilder.ApplyConfiguration(new AppRoleConfiguration());
+            modelBuilder.ApplyConfiguration(new AppUserConfiguration());
+            modelBuilder.ApplyConfiguration(new AppUserRoleConfiguration());
+            modelBuilder.ApplyConfiguration(new GenderConfiguration());
+            modelBuilder.ApplyConfiguration(new MilitaryStatusConfiguration());
+            modelBuilder.ApplyConfiguration(new ProvidedServiceConfiguration());
+        }
     }
 }
