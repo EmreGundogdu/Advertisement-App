@@ -14,5 +14,6 @@ namespace AdvertisementApp.Entity
         public int GenderId { get; set; }
         public Gender Gender { get; set; }
         public List<AppUserRole> AppUserRoles { get; set; }
+        public List<AdvertisementAppUser> AdvertisementAppUsers { get; set; }
     }
 }
