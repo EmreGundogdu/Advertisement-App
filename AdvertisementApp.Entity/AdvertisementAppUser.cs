@@ -14,7 +14,7 @@ namespace AdvertisementApp.Entity
         public AppUser AppUser { get; set; }
         public int AdvertisementAppUserStatusId { get; set; }
         public AdvertisementAppUserStatus AdvertisementAppUserStatus { get; set; }
-        public int StatusId { get; set; }
+        public int MilitaryStatusId { get; set; }
         public MilitaryStatus MilitaryStatus { get; set; }
         public int WorkExperience { get; set; }
         public DateTime? EndDate  { get; set; }
