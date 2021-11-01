@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdvertisementApp.Common", "AdvertisementApp.Common\AdvertisementApp.Common.csproj", "{6C9D956D-50FE-4748-8C88-47C3F38F53EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvertisementApp.Entity", "AdvertisementApp.Entity\AdvertisementApp.Entity.csproj", "{DA49FC24-AF06-4042-8005-A843C44611DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdvertisementApp.Entity", "AdvertisementApp.Entity\AdvertisementApp.Entity.csproj", "{DA49FC24-AF06-4042-8005-A843C44611DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvertisementApp.DataAccess", "AdvertisementApp.DataAccess\AdvertisementApp.DataAccess.csproj", "{2263098F-E5CE-41B7-98CC-373499031254}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{DA49FC24-AF06-4042-8005-A843C44611DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DA49FC24-AF06-4042-8005-A843C44611DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DA49FC24-AF06-4042-8005-A843C44611DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2263098F-E5CE-41B7-98CC-373499031254}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2263098F-E5CE-41B7-98CC-373499031254}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2263098F-E5CE-41B7-98CC-373499031254}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2263098F-E5CE-41B7-98CC-373499031254}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
