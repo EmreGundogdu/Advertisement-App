@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AdvertisementApp.Entity
 {
-    public class Advertisement:BaseEntity
+    public class Advertisement : BaseEntity
     {
         public string Title { get; set; }
         public bool Status { get; set; }

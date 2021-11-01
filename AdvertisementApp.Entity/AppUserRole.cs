@@ -8,9 +8,9 @@ namespace AdvertisementApp.Entity
 {
     public class AppUserRole : BaseEntity
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string PhoneNumber { get; set; }
-        public List<AppUserRole> UserRoles { get; set; }
+        public int AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
+        public int AppRoleId { get; set; }
+        public AppRole AppRole { get; set; }
     }
 }
