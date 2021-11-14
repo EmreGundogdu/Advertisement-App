@@ -22,19 +22,21 @@ namespace AdvertisementApp.DataAccess.Concrete
         }
         public async Task<List<T>> GetAllAsync()
         {
-            return await _context.Set<T>().ToListAsync();
+            return await _context.Set<T>().AsNoTracking().ToListAsync();
         }
         public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter)
         {
-            return await _context.Set<T>().Where(filter).ToListAsync();
+            return await _context.Set<T>().Where(filter).AsNoTracking().ToListAsync();
         }
         public async Task<List<T>> GetAllAsync<TKey>(Expression<Func<T, TKey>> selector, OrderByType orderByType = OrderByType.DESC)
         {
-            return orderByType == OrderByType.ASC ? await _context.Set<T>().OrderBy(selector).ToListAsync() : await _context.Set<T>().OrderByDescending(selector).ToListAsync();
+            return orderByType == OrderByType.ASC ? await _context.Set<T>().AsNoTracking().OrderBy(selector).ToListAsync() : await _context.Set<T>().AsNoTracking().OrderByDescending(selector).ToListAsync();
         }
         public async Task<List<T>> GetAllAsync<TKey>(Expression<Func<T, bool>> filter, Expression<Func<T, TKey>> selector, OrderByType orderByType = OrderByType.DESC)
         {
-            return orderByType == OrderByType.ASC ? await _context.Set<T>().Where(filter).OrderBy(selector).ToListAsync() : await _context.Set<T>().Where(filter).OrderByDescending(selector).ToListAsync();
+            return orderByType == OrderByType.ASC ?
+                await _context.Set<T>().Where(filter).AsNoTracking().OrderBy(selector).ToListAsync() :
+                await _context.Set<T>().Where(filter).AsNoTracking().OrderByDescending(selector).ToListAsync();
 
         }
     }
