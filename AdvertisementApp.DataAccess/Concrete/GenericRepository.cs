@@ -1,4 +1,5 @@
-﻿using AdvertisementApp.DataAccess.Context;
+﻿using AdvertisementApp.Common.Enums;
+using AdvertisementApp.DataAccess.Context;
 using AdvertisementApp.DataAccess.Interface;
 using AdvertisementApp.Entity;
 using Microsoft.EntityFrameworkCore;
@@ -23,13 +24,18 @@ namespace AdvertisementApp.DataAccess.Concrete
         {
             return await _context.Set<T>().ToListAsync();
         }
-        public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> expression)
+        public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter)
         {
-            return await _context.Set<T>().Where(expression).ToListAsync();
+            return await _context.Set<T>().Where(filter).ToListAsync();
         }
-        public async Task<List<T>> GetAllAsync<TKey>(Expression<Func<T,TKey>> selector) 
+        public async Task<List<T>> GetAllAsync<TKey>(Expression<Func<T, TKey>> selector, OrderByType orderByType = OrderByType.DESC)
         {
-            return await _context.Set<T>().OrderBy(selector).ToListAsync();
+            return orderByType == OrderByType.ASC ? await _context.Set<T>().OrderBy(selector).ToListAsync() : await _context.Set<T>().OrderByDescending(selector).ToListAsync();
+        }
+        public async Task<List<T>> GetAllAsync<TKey>(Expression<Func<T, bool>> filter, Expression<Func<T, TKey>> selector, OrderByType orderByType = OrderByType.DESC)
+        {
+            return orderByType == OrderByType.ASC ? await _context.Set<T>().Where(filter).OrderBy(selector).ToListAsync() : await _context.Set<T>().Where(filter).OrderByDescending(selector).ToListAsync();
+
         }
     }
 }
