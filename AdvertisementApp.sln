@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvertisementApp.Business",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvertisementApp.UI", "AdvertisementApp.UI\AdvertisementApp.UI.csproj", "{DCE231E2-05D8-4AA1-971D-41184C492DDA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdvertisementApp.Dtos", "AdvertisementApp.Dtos\AdvertisementApp.Dtos.csproj", "{75F4AA16-9056-4446-A532-008CE44201CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{DCE231E2-05D8-4AA1-971D-41184C492DDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCE231E2-05D8-4AA1-971D-41184C492DDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCE231E2-05D8-4AA1-971D-41184C492DDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75F4AA16-9056-4446-A532-008CE44201CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75F4AA16-9056-4446-A532-008CE44201CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75F4AA16-9056-4446-A532-008CE44201CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75F4AA16-9056-4446-A532-008CE44201CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
