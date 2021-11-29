@@ -22,7 +22,7 @@ namespace AdvertisementApp.DataAccess.Context
         public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<AppUserRole> AppUserRoles { get; set; }
         public DbSet<Gender> Genders { get; set; }
-        public DbSet<MilitaryStatus> militaryStatuses { get; set; }
+        public DbSet<MilitaryStatus> MilitaryStatuses { get; set; }
         public DbSet<ProvidedServices> ProvidedServices { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
