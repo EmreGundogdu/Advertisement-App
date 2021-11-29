@@ -1,4 +1,5 @@
-﻿using AdvertisementApp.Business.Interfaces;
+﻿using AdvertisementApp.Business.Extensions;
+using AdvertisementApp.Business.Interfaces;
 using AdvertisementApp.Common;
 using AdvertisementApp.DataAccess.Interface;
 using AdvertisementApp.DataAccess.UnitOfWork;
@@ -41,7 +42,7 @@ namespace AdvertisementApp.Business.Services
                 await _unitOfWork.GetRepository<T>().CreateAsync(createdEntity);
                 return new Response<CreateDto>(ResponseType.Success, dto);
             }
-            return new Response<CreateDto>(dto, errors: new List<CustomValidationError>());
+            return new Response<CreateDto>(dto, result.ConverToCustomValidationError());
         }
 
         public Task<IResponse<List<ListDto>>> GetAllAsync()
