@@ -1,4 +1,5 @@
-﻿using AdvertisementApp.Business.ValidationRules.FluentValidation;
+﻿using AdvertisementApp.Business.Mappings.AutoMapper;
+using AdvertisementApp.Business.ValidationRules.FluentValidation;
 using AdvertisementApp.DataAccess.Context;
 using AdvertisementApp.DataAccess.UnitOfWork;
 using AdvertisementApp.Dtos.ProvidedServiceDtos;
@@ -25,6 +26,7 @@ namespace AdvertisementApp.Business.DependencyResolvers.Microsoft
             });
             var mapperConfiguration = new MapperConfiguration(opt =>
             {
+                opt.AddProfile(new ProvidedServiceProfile());   
                 //    opt.AddProfile();
             });
             var mapper = mapperConfiguration.CreateMapper();

@@ -17,7 +17,7 @@ namespace AdvertisementApp.Business.Services
 {
     public class GenericService<CreateDto, UpdateDto, ListDto, T> : IGenericService<CreateDto, UpdateDto, ListDto, T>
         where CreateDto : class, IDto, new()
-        where UpdateDto : class, IDto, new()
+        where UpdateDto : class, IUpdateDto, new()
         where ListDto : class, IDto, new()
         where T : BaseEntity
     {
@@ -45,24 +45,44 @@ namespace AdvertisementApp.Business.Services
             return new Response<CreateDto>(dto, result.ConverToCustomValidationError());
         }
 
-        public Task<IResponse<List<ListDto>>> GetAllAsync()
+        public async Task<IResponse<List<ListDto>>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var data = await _unitOfWork.GetRepository<T>().GetAllAsync();
+            var dto = _mapper.Map<List<ListDto>>(data);
+            return new Response<List<ListDto>>(ResponseType.Success, dto);
         }
 
-        public Task<IResponse<IDto>> GetByIdAsync(int id)
+        public async Task<IResponse<IDto>> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var data = await _unitOfWork.GetRepository<T>().GetByFilterAsync(x => x.Id == id);
+            if (data is null)
+                return new Response<IDto>(ResponseType.NotFound, $"{id} idsine sahip data bulunamadı");
+            var dto = _mapper.Map<IDto>(data);
+            return new Response<IDto>(ResponseType.Success, dto);
         }
 
-        public Task<IResponse> RemoveAsync(int id)
+        public async Task<IResponse> RemoveAsync(int id)
         {
-            throw new NotImplementedException();
+            var data = await _unitOfWork.GetRepository<T>().FindAsync(id);
+            if (data is null)
+                return new Response(ResponseType.NotFound, $"{id} idsine sahip data bulunamadı");
+            _unitOfWork.GetRepository<T>().Remove(data);
+            return new Response(ResponseType.Success);
         }
 
-        public Task<IResponse<UpdateDto>> UpdateAsync(UpdateDto dto)
+        public async Task<IResponse<UpdateDto>> UpdateAsync(UpdateDto dto)
         {
-            throw new NotImplementedException();
+            var result = _updateDtoValidator.Validate(dto);
+            if (result.IsValid)
+            {
+                var unchangedData = await _unitOfWork.GetRepository<T>().FindAsync(dto.Id);
+                if (unchangedData == null)
+                    return new Response<UpdateDto>(ResponseType.NotFound, $"{dto.Id} idsine sahip data bulunamadı");
+                var entity = _mapper.Map<T>(dto);
+                _unitOfWork.GetRepository<T>().Update(entity, unchangedData);
+                return new Response<UpdateDto>(ResponseType.Success, dto);
+            }
+            return new Response<UpdateDto>(dto, result.ConverToCustomValidationError());
         }
     }
 }
