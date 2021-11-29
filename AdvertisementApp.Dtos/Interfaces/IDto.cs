@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AdvertisementApp.Dtos.Interfaces
 {
-    interface IDto
+    public interface IDto
     {
     }
 }

@@ -1,6 +1,9 @@
-﻿using AdvertisementApp.DataAccess.Context;
+﻿using AdvertisementApp.Business.ValidationRules.FluentValidation;
+using AdvertisementApp.DataAccess.Context;
 using AdvertisementApp.DataAccess.UnitOfWork;
+using AdvertisementApp.Dtos.ProvidedServiceDtos;
 using AutoMapper;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -27,6 +30,8 @@ namespace AdvertisementApp.Business.DependencyResolvers.Microsoft
             var mapper = mapperConfiguration.CreateMapper();
             services.AddSingleton(mapper);
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddTransient<IValidator<ProvidedServiceCreateDto>, ProvidedServiceCreateDtoValidator>();
+            services.AddTransient<IValidator<ProvidedServiceUpdateDto>, ProvidedServiceUpdateDtoValidator>();
         }
     }
 }
