@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AdvertisementApp.Business.Interfaces
 {
-    interface IProvidedServiceService : IGenericService<ProvidedServiceCreateDto, ProvidedServiceUpdateDto, ProvidedServiceListDto, ProvidedServices>
+    public interface IProvidedServiceService : IGenericService<ProvidedServiceCreateDto, ProvidedServiceUpdateDto, ProvidedServiceListDto, ProvidedServices>
     {
     }
 }
