@@ -1,4 +1,5 @@
-﻿using AdvertisementApp.DataAccess.UnitOfWork;
+﻿using AdvertisementApp.Business.Interfaces;
+using AdvertisementApp.DataAccess.UnitOfWork;
 using AdvertisementApp.Dtos.ProvidedServiceDtos;
 using AdvertisementApp.Entity;
 using AutoMapper;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace AdvertisementApp.Business.Services
 {
-    public class ProvidedServiceService : GenericService<ProvidedServiceCreateDto, ProvidedServiceUpdateDto, ProvidedServiceListDto, ProvidedServices>
+    public class ProvidedServiceService : GenericService<ProvidedServiceCreateDto, ProvidedServiceUpdateDto, ProvidedServiceListDto, ProvidedServices>, IProvidedServiceService
     {
         public ProvidedServiceService(IMapper mapper, IValidator<ProvidedServiceCreateDto> createDtoValidator, IValidator<ProvidedServiceUpdateDto> updateDtoValidator, IUnitOfWork unitOfWork) : base(mapper, createDtoValidator, updateDtoValidator, unitOfWork)
         {

@@ -1,4 +1,6 @@
-﻿using AdvertisementApp.Business.Mappings.AutoMapper;
+﻿using AdvertisementApp.Business.Interfaces;
+using AdvertisementApp.Business.Mappings.AutoMapper;
+using AdvertisementApp.Business.Services;
 using AdvertisementApp.Business.ValidationRules.FluentValidation;
 using AdvertisementApp.DataAccess.Context;
 using AdvertisementApp.DataAccess.UnitOfWork;
@@ -34,6 +36,7 @@ namespace AdvertisementApp.Business.DependencyResolvers.Microsoft
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddTransient<IValidator<ProvidedServiceCreateDto>, ProvidedServiceCreateDtoValidator>();
             services.AddTransient<IValidator<ProvidedServiceUpdateDto>, ProvidedServiceUpdateDtoValidator>();
+            services.AddScoped<IProvidedServiceService, ProvidedServiceService>();
         }
     }
 }
