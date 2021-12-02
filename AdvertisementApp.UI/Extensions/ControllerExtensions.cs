@@ -9,7 +9,7 @@ namespace AdvertisementApp.UI.Extensions
 {
     public static class ControllerExtensions
     {
-        public static IActionResult ResponseRedirectoAction(this Controller controller, IResponse<T> response, string actionName)
+        public static IActionResult ResponseRedirectoAction<T>(this Controller controller, IResponse<T> response, string actionName)
         {
             if (response.ResponseType == ResponseType.NotFound)
                 return controller.NotFound();
@@ -23,6 +23,17 @@ namespace AdvertisementApp.UI.Extensions
             }
             return controller.RedirectToAction(actionName);
         }
-        public static IActionResult ResponseView<T>(this Controller controller,)
+        public static IActionResult ResponseView<T>(this Controller controller, IResponse<T> response)
+        {
+            if (response.ResponseType == ResponseType.NotFound)
+                return controller.NotFound();
+            return controller.View(response.Data);
+        }
+        public static IActionResult ResponseRedirectoAction(this Controller controller, IResponse response, string actionName)
+        {
+            if (response.ResponseType == ResponseType.NotFound)
+                return controller.NotFound();
+            return controller.RedirectToAction(actionName);
+        }
     }
 }
