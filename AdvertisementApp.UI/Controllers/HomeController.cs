@@ -1,4 +1,5 @@
 ﻿using AdvertisementApp.Business.Interfaces;
+using AdvertisementApp.UI.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace AdvertisementApp.UI.Controllers
         public async Task<IActionResult> Index()
         {
             var response = await _providedServiceService.GetAllAsync();
-            return View();
+            return this.ResponseView(response);
         }
     }
 }

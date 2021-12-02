@@ -17,7 +17,7 @@ namespace AdvertisementApp.UI.Extensions
             {
                 foreach (var item in response.ValidationErrors)
                 {
-                    controller.ModelState.AddModelError(item.PropertyName, item.ErrorMessage)
+                    controller.ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
                 }
                 return controller.View(response.Data);
             }
