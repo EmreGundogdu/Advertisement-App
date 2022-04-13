@@ -24,19 +24,24 @@ namespace AdvertisementApp.Business.DependencyResolvers.Microsoft
         {
             services.AddDbContext<AdvertiesmentContext>(opt =>
             {
-                opt.UseSqlServer(configuration.GetConnectionString("Local"));
+                opt.UseSqlServer(configuration["ConnectionString:SqlConnection"]);
             });
             var mapperConfiguration = new MapperConfiguration(opt =>
             {
-                opt.AddProfile(new ProvidedServiceProfile());   
-                //    opt.AddProfile();
+                opt.AddProfile(new ProvidedServiceProfile());
+                opt.AddProfile(new AdvertisementProfile());
             });
             var mapper = mapperConfiguration.CreateMapper();
             services.AddSingleton(mapper);
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             services.AddTransient<IValidator<ProvidedServiceCreateDto>, ProvidedServiceCreateDtoValidator>();
             services.AddTransient<IValidator<ProvidedServiceUpdateDto>, ProvidedServiceUpdateDtoValidator>();
+            services.AddTransient<IValidator<AdvertisementCreateDto>, AdvertiesementCreateDtoValidator>();
+            services.AddTransient<IValidator<AdvertisementUpdateDto>, AdvertisementUpdateDtoValidator>();
+
             services.AddScoped<IProvidedServiceService, ProvidedServiceService>();
+            services.AddScoped<IAdvertisementService, AdvertisementService>();
         }
     }
 }
