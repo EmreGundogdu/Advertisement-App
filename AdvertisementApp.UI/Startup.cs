@@ -1,4 +1,5 @@
 using AdvertisementApp.Business.DependencyResolvers.Microsoft;
+using AdvertisementApp.Business.Helpers;
 using AdvertisementApp.UI.Mappings.AutoMapper;
 using AdvertisementApp.UI.Models;
 using AdvertisementApp.UI.ValidationRules;
@@ -31,7 +32,15 @@ namespace AdvertisementApp.UI
             services.AddDependencies(Configuration);
             services.AddTransient<IValidator<UserCreateModel>, UserCreateModelValidator>();
             services.AddControllersWithViews();
+            var profiles = ProfileHelper.GetProfiles();
+            profiles.Add(new UserCreateModelProfile());
 
+            var configuration = new MapperConfiguration(opt =>
+            {
+                opt.AddProfiles(profiles);
+            });
+            var mapper = configuration.CreateMapper();
+            services.AddSingleton(mapper);
 
         }
 
