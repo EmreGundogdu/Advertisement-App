@@ -1,0 +1,44 @@
+﻿@model UserCreateModel
+
+
+<div class="mt-5">
+    <form asp-action="SignUp" asp-controller="Account" method="post" class="p-4 w-75 mx-auto">
+
+        <div class="mb-3">
+            <label>Adınız: </label>
+            <input class="form-control" asp-for="Firstname" />
+        </div>
+
+        <div class="mb-3">
+            <label>Soyadınız: </label>
+            <input class="form-control" asp-for="Surname" />
+        </div>
+
+        <div class="mb-3">
+            <label>Kullanıcı Adınız: </label>
+            <input class="form-control" asp-for="Username" />
+        </div>
+        <div class="mb-3">
+            <label>Telefon Numaranız: </label>
+            <input class="form-control" asp-for="PhoneNumber" />
+        </div>
+        <div class="mb-3">
+            <select class="form-select" asp-items="@Model.Genders" asp-for="GenderId">
+                <option value="0">Bir cinsiyet seçiniz</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label>Şifreniz: </label>
+            <input class="form-control" asp-for="Password" type="password" />
+        </div>
+
+        <div class="mb-3">
+            <label>Şifre Tekrarı: </label>
+            <input class="form-control" asp-for="ConfirmPassword" type="password" />
+        </div>
+        <div class="mb-3 text-end">
+            <button class="btn btn-outline-secondary" type="submit">Kayıt Ol</button>
+        </div>
+        <div class="text-dark text-danger" asp-validation-summary="All"></div>
+    </form>
+</div>
