@@ -1,5 +1,6 @@
 ﻿using AdvertisementApp.UI.Models;
 using FluentValidation;
+using System;
 
 namespace AdvertisementApp.UI.ValidationRules
 {

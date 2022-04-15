@@ -4,6 +4,7 @@ using AdvertisementApp.Business.ValidationRules.FluentValidation;
 using AdvertisementApp.DataAccess.Context;
 using AdvertisementApp.DataAccess.UnitOfWork;
 using AdvertisementApp.Dtos;
+using AutoMapper;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -20,8 +21,6 @@ namespace AdvertisementApp.Business.DependencyResolvers.Microsoft
                 opt.UseSqlServer(configuration["ConnectionString:SqlConnection"]);
             });
 
-            var mapper = mapperConfiguration.CreateMapper();
-            services.AddSingleton(mapper);
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddTransient<IValidator<ProvidedServiceCreateDto>, ProvidedServiceCreateDtoValidator>();
