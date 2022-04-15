@@ -1,20 +1,13 @@
 ﻿using AdvertisementApp.Business.Interfaces;
-using AdvertisementApp.Business.Mappings.AutoMapper;
 using AdvertisementApp.Business.Services;
 using AdvertisementApp.Business.ValidationRules.FluentValidation;
 using AdvertisementApp.DataAccess.Context;
 using AdvertisementApp.DataAccess.UnitOfWork;
 using AdvertisementApp.Dtos;
-using AutoMapper;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdvertisementApp.Business.DependencyResolvers.Microsoft
 {
@@ -45,6 +38,6 @@ namespace AdvertisementApp.Business.DependencyResolvers.Microsoft
             services.AddScoped<IAppUserService, AppUserService>();
             services.AddScoped<IGenderService, GenderService>();
         }
-            
+
     }
 }

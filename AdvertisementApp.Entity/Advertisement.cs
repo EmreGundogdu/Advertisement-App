@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdvertisementApp.Entity
 {
@@ -11,7 +8,7 @@ namespace AdvertisementApp.Entity
         public string Title { get; set; }
         public bool Status { get; set; }
         public string Description { get; set; }
-        public DateTime CreatedTime { get; set; } 
+        public DateTime CreatedTime { get; set; }
         //default olarak değer ile oluşsun istiyorsak -> = DateTime.Now
         public List<AdvertisementAppUser> AdvertisementAppUsers { get; set; }
     }

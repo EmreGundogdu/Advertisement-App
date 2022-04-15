@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdvertisementApp.Entity
 {
@@ -17,7 +13,7 @@ namespace AdvertisementApp.Entity
         public int MilitaryStatusId { get; set; }
         public MilitaryStatus MilitaryStatus { get; set; }
         public int WorkExperience { get; set; }
-        public DateTime? EndDate  { get; set; }
+        public DateTime? EndDate { get; set; }
         public string CvPath { get; set; }
     }
 }
