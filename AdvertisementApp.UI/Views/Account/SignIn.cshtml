@@ -1,0 +1,22 @@
+﻿@model UserCreateModel
+
+
+<div class="mt-5">
+    <form asp-action="SignIn" asp-controller="Account" method="post" class="p-4 w-75 mx-auto">
+
+       
+        <div class="mb-3">
+            <label>Kullanıcı Adınız: </label>
+            <input class="form-control" asp-for="Username" />
+        </div>
+        <div class="mb-3">
+            <label>Şifreniz: </label>
+            <input class="form-control" asp-for="Password" type="password" />
+        </div>
+        <div class="mb-3 text-end">
+            <button type="submit" class="btn btn-outline-dark">Giriş Yap!
+            </button>
+        </div>
+        <div class="text-dark text-danger" asp-validation-summary="All"></div>
+    </form>
+</div>

@@ -25,10 +25,14 @@ namespace AdvertisementApp.Business.DependencyResolvers.Microsoft
 
             services.AddTransient<IValidator<ProvidedServiceCreateDto>, ProvidedServiceCreateDtoValidator>();
             services.AddTransient<IValidator<ProvidedServiceUpdateDto>, ProvidedServiceUpdateDtoValidator>();
+
             services.AddTransient<IValidator<AdvertisementCreateDto>, AdvertiesementCreateDtoValidator>();
             services.AddTransient<IValidator<AdvertisementUpdateDto>, AdvertisementUpdateDtoValidator>();
+
             services.AddTransient<IValidator<AppUserCreateDto>, AppUserCreateValidator>();
             services.AddTransient<IValidator<AppUserUpdateDto>, AppUserUpdateValidator>();
+            services.AddTransient<IValidator<AppUserLoginDto>, AppUserLoginDtoValidator>();
+
             services.AddTransient<IValidator<GenderCreateDto>, GenderCreateDtoValidator>();
             services.AddTransient<IValidator<GenderUpdateDto>, GenderUpdateDtoValidator>();
 
