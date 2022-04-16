@@ -19,11 +19,13 @@ namespace AdvertisementApp.Business.Services
         readonly IUnitOfWork _unitOfWork;
         readonly IMapper _mapper;
         readonly IValidator<AppUserCreateDto> _createDtoValidator;
-        public AppUserService(IMapper mapper, IValidator<AppUserCreateDto> createtoValidator, IValidator<AppUserUpdateDto> updateDtoValidator, IUnitOfWork unitOfWork) : base(mapper, createtoValidator, updateDtoValidator, unitOfWork)
+        readonly IValidator<AppUserLoginDto> _loginDtoValidator;
+        public AppUserService(IMapper mapper, IValidator<AppUserCreateDto> createtoValidator, IValidator<AppUserUpdateDto> updateDtoValidator, IUnitOfWork unitOfWork, IValidator<AppUserLoginDto> loginDtoValidator) : base(mapper, createtoValidator, updateDtoValidator, unitOfWork)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _createDtoValidator = createtoValidator;
+            _loginDtoValidator = loginDtoValidator;
         }
         public async Task<IResponse<AppUserCreateDto>> CreateWithRoleAsync(AppUserCreateDto dto, int roleId)
         {
@@ -46,6 +48,21 @@ namespace AdvertisementApp.Business.Services
                 //});
             }
             return new Response<AppUserCreateDto>(dto, validationResult.ConverToCustomValidationError());
+        }
+        public async Task<IResponse<AppUserListDto>> CheckUserAsync(AppUserLoginDto dto)
+        {
+            var validationResult = _loginDtoValidator.Validate(dto);
+            if (validationResult.IsValid)
+            {
+                var user = await _unitOfWork.GetRepository<AppUser>().GetByFilterAsync(x => x.Username == dto.Username && x.Password == dto.Password);
+                if (user is not null)
+                {
+                    var appUserDto = _mapper.Map<AppUserListDto>(user);
+                    return new Response<AppUserListDto>(ResponseType.Success, appUserDto);
+                }
+                return new Response<AppUserListDto>(ResponseType.NotFound, "Kullanıcı adı veya şifre hatalı");
+            }
+            return new Response<AppUserListDto>(ResponseType.ValidationError, "Kullanıcı adı veya şifre boş olamaz");
         }
     }
 }

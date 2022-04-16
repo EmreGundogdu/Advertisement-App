@@ -1,4 +1,4 @@
-﻿@model UserCreateModel
+﻿@model AppUserLoginDto
 
 
 <div class="mt-5">
@@ -12,6 +12,10 @@
         <div class="mb-3">
             <label>Şifreniz: </label>
             <input class="form-control" asp-for="Password" type="password" />
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" asp-for="RememberMe" />
+            <label class="form-check-label">Beni Hatırla</label>
         </div>
         <div class="mb-3 text-end">
             <button type="submit" class="btn btn-outline-dark">Giriş Yap!

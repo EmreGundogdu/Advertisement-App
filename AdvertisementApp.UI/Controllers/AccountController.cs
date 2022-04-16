@@ -6,8 +6,12 @@ using AdvertisementApp.UI.Models;
 using AutoMapper;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace AdvertisementApp.UI.Controllers
@@ -58,9 +62,21 @@ namespace AdvertisementApp.UI.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult SignIn(AppUserLoginDto model)
+        public async Task<IActionResult> SignIn(AppUserLoginDto dto)
         {
-            return View(model);
+            var result = await _appUserService.CheckUserAsync(dto);
+            if (result.ResponseType == Common.ResponseType.Success)
+            {
+                var claims = new List<Claim>();
+                var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                var authProperties = new AuthenticationProperties
+                {
+                    IsPersistent = dto.RememberMe
+                };
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
+            }
+            ModelState.AddModelError("", result.Message);
+            return View(dto);
         }
     }
 }
