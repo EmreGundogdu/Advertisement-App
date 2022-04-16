@@ -12,7 +12,7 @@ namespace AdvertisementApp.Business.ValidationRules.FluentValidation
     {
         public AdvertiesementCreateDtoValidator()
         {
-            RuleFor(x=>x.Title).NotEmpty();
+            RuleFor(x => x.Title).NotEmpty();
             RuleFor(x => x.Description).NotEmpty();
         }
     }

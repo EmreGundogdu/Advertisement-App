@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AdvertisementApp.Business.Mappings.AutoMapper
 {
-    public class ProvidedServiceProfile:Profile
+    public class ProvidedServiceProfile : Profile
     {
         public ProvidedServiceProfile()
         {

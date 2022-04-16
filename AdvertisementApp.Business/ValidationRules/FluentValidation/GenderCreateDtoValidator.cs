@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AdvertisementApp.Business.ValidationRules.FluentValidation
 {
-    public class GenderCreateDtoValidator:AbstractValidator<GenderCreateDto>
+    public class GenderCreateDtoValidator : AbstractValidator<GenderCreateDto>
     {
         public GenderCreateDtoValidator()
         {

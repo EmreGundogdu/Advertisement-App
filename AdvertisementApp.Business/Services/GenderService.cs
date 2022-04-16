@@ -14,9 +14,12 @@ namespace AdvertisementApp.Business.Services
 {
     public class GenderService : GenericService<GenderCreateDto, GenderUpdateDto, GenderListDto, Gender>, IGenderService
     {
+        readonly IUnitOfWork _unitOfWork;
+        readonly IMapper _mapper;
         public GenderService(IMapper mapper, IValidator<GenderCreateDto> createDtoValidator, IValidator<GenderUpdateDto> updateDtoValidator, IUnitOfWork unitOfWork) : base(mapper, createDtoValidator, updateDtoValidator, unitOfWork)
         {
-
+            _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
     }
 }

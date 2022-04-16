@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AdvertisementApp.Business.ValidationRules.FluentValidation
 {
-    public class ProvidedServiceUpdateDtoValidator:AbstractValidator<ProvidedServiceUpdateDto>
+    public class ProvidedServiceUpdateDtoValidator : AbstractValidator<ProvidedServiceUpdateDto>
     {
         public ProvidedServiceUpdateDtoValidator()
         {

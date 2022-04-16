@@ -14,9 +14,12 @@ namespace AdvertisementApp.Business.Services
 {
     public class ProvidedServiceService : GenericService<ProvidedServiceCreateDto, ProvidedServiceUpdateDto, ProvidedServiceListDto, ProvidedServices>, IProvidedServiceService
     {
+        readonly IUnitOfWork _unitOfWork;
+        readonly IMapper _mapper;
         public ProvidedServiceService(IMapper mapper, IValidator<ProvidedServiceCreateDto> createDtoValidator, IValidator<ProvidedServiceUpdateDto> updateDtoValidator, IUnitOfWork unitOfWork) : base(mapper, createDtoValidator, updateDtoValidator, unitOfWork)
         {
-
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
     }
 }

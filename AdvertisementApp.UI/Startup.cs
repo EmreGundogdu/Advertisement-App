@@ -5,16 +5,13 @@ using AdvertisementApp.UI.Models;
 using AdvertisementApp.UI.ValidationRules;
 using AutoMapper;
 using FluentValidation;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AdvertisementApp.UI
 {
@@ -31,7 +28,17 @@ namespace AdvertisementApp.UI
         {
             services.AddDependencies(Configuration);
             services.AddTransient<IValidator<UserCreateModel>, UserCreateModelValidator>();
-            services.AddControllersWithViews();
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(opt =>
+            {
+                opt.Cookie.Name = "AdvetisementCookie";
+                opt.Cookie.HttpOnly = true;
+                opt.Cookie.SameSite = Microsoft.AspNetCore.Http.SameSiteMode.Strict;
+                opt.Cookie.SecurePolicy = Microsoft.AspNetCore.Http.CookieSecurePolicy.SameAsRequest;
+                opt.ExpireTimeSpan = TimeSpan.FromDays(20);
+            });
+
+
             var profiles = ProfileHelper.GetProfiles();
             profiles.Add(new UserCreateModelProfile());
 
@@ -41,6 +48,8 @@ namespace AdvertisementApp.UI
             });
             var mapper = configuration.CreateMapper();
             services.AddSingleton(mapper);
+
+            services.AddControllersWithViews();
 
         }
 
@@ -55,6 +64,10 @@ namespace AdvertisementApp.UI
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseAuthentication();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

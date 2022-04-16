@@ -17,7 +17,7 @@ namespace AdvertisementApp.Entity
         public int MilitaryStatusId { get; set; }
         public MilitaryStatus MilitaryStatus { get; set; }
         public int WorkExperience { get; set; }
-        public DateTime? EndDate  { get; set; }
+        public DateTime? EndDate { get; set; }
         public string CvPath { get; set; }
     }
 }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AdvertisementApp.Dtos
 {
-    public class AppUserCreateDto:IDto
+    public class AppUserCreateDto : IDto
     {
         public string Firstname { get; set; }
         public string Surname { get; set; }

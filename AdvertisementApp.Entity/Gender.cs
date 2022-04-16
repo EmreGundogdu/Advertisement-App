@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AdvertisementApp.Entity
 {
-    public class Gender:BaseEntity
+    public class Gender : BaseEntity
     {
         public string Definition { get; set; }
         public List<AppUser> AppUsers { get; set; }

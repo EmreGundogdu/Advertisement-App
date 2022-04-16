@@ -4,7 +4,7 @@ using AutoMapper;
 
 namespace AdvertisementApp.UI.Mappings.AutoMapper
 {
-    public class UserCreateModelProfile:Profile
+    public class UserCreateModelProfile : Profile
     {
         public UserCreateModelProfile()
         {

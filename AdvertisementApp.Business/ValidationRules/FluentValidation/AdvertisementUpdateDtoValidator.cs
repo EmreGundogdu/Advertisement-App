@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace AdvertisementApp.Business.ValidationRules.FluentValidation
 {
-    public class AdvertisementUpdateDtoValidator:AbstractValidator<AdvertisementUpdateDto>
+    public class AdvertisementUpdateDtoValidator : AbstractValidator<AdvertisementUpdateDto>
     {
         public AdvertisementUpdateDtoValidator()
         {
             RuleFor(x => x.Id).NotEmpty();
-            RuleFor(x=>x.Title).NotEmpty();
-            RuleFor(x=>x.Description).NotEmpty();   
+            RuleFor(x => x.Title).NotEmpty();
+            RuleFor(x => x.Description).NotEmpty();
 
         }
     }
