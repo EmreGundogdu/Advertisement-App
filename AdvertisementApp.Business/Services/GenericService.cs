@@ -33,7 +33,7 @@ namespace AdvertisementApp.Business.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IResponse<CreateDto>> CreateAsycn(CreateDto dto)
+        public async Task<IResponse<CreateDto>> CreateAsync(CreateDto dto)
         {
             var result = _createDtoValidator.Validate(dto);
             if (result.IsValid)

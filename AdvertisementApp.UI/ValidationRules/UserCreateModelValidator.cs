@@ -19,7 +19,7 @@ namespace AdvertisementApp.UI.ValidationRules
             {
                 x.Username,
                 x.Firstname
-            }).Must(x => CanNotFirstname(x.Username, x.Firstname)).WithMessage("Kullanıcı adı isminiz ile aynı olamaz.").When(x => x.Username != null && x.Firstname != null);
+            }).Must(x => CanNotFirstname(x.Username, x.Firstname)).WithMessage("Kullanıcı adı isminiz ile aynı olamaz.").When(x => x.Username == null && x.Firstname == null);
             RuleFor(x => x.GenderId).NotEmpty().WithMessage("Cinsiyet seçimi boş geçilemez");
         }
 

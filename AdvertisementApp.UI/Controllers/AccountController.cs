@@ -41,13 +41,12 @@ namespace AdvertisementApp.UI.Controllers
             if (result.IsValid)
             {
                 var dto = _mapper.Map<AppUserCreateDto>(model);
-                var createResponse = await _appUserService.CreateAsycn(dto);
+                var createResponse = await _appUserService.CreateAsync(dto);
                 return this.ResponseRedirectoAction(createResponse, "SignIn");
-                return View(model);
             }
-            foreach (var item in result.Errors)
+            foreach (var error in result.Errors)
             {
-                ModelState.AddModelError(item.PropertyName, item.ErrorMessage);
+                ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
             }
             var response = await _genderService.GetAllAsync();
             model.Genders = new SelectList(response.Data, "Id", "Definition", model.GenderId);

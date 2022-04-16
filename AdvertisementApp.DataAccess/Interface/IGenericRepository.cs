@@ -15,7 +15,7 @@ namespace AdvertisementApp.DataAccess.Interface
         Task<List<T>> GetAllAsync(Expression<Func<T, bool>> filter);
         Task<List<T>> GetAllAsync<TKey>(Expression<Func<T, TKey>> selector, OrderByType orderByType = OrderByType.DESC);
         Task<List<T>> GetAllAsync<TKey>(Expression<Func<T, bool>> filter, Expression<Func<T, TKey>> selector, OrderByType orderByType = OrderByType.DESC);
-        Task<T> FindAsync(object id);
+        Task<T> FindAsync(int id);
         Task<T> GetByFilterAsync(Expression<Func<T, bool>> filter, bool asNoTracking = false);
         IQueryable<T> GetQuery();
         void Remove(T entity);

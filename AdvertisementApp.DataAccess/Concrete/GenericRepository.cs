@@ -38,7 +38,7 @@ namespace AdvertisementApp.DataAccess.Concrete
                 await _context.Set<T>().Where(filter).AsNoTracking().OrderBy(selector).ToListAsync() :
                 await _context.Set<T>().Where(filter).AsNoTracking().OrderByDescending(selector).ToListAsync();
         }
-        public async Task<T> FindAsync(object id)
+        public async Task<T> FindAsync(int id)
         {
             return await _context.Set<T>().FindAsync(id);
         }

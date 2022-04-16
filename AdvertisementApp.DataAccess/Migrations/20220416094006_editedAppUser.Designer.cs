@@ -4,14 +4,16 @@ using AdvertisementApp.DataAccess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AdvertisementApp.DataAccess.Migrations
 {
     [DbContext(typeof(AdvertiesmentContext))]
-    partial class AdvertiesmentContextModelSnapshot : ModelSnapshot
+    [Migration("20220416094006_editedAppUser")]
+    partial class editedAppUser
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

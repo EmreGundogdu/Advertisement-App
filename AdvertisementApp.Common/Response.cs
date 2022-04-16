@@ -17,6 +17,7 @@ namespace AdvertisementApp.Common
             ResponseType = responseType;
             Message = message;
         }
+
         public string Message { get; set; }
         public ResponseType ResponseType { get; set; }
     }

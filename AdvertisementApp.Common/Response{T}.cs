@@ -20,7 +20,7 @@ namespace AdvertisementApp.Common
         }
         public Response(T data, List<CustomValidationError> errors) : base(ResponseType.ValidationError)
         {
-            ValidationErrors = ValidationErrors;
+            ValidationErrors = errors;
             Data = data;
         }
     }

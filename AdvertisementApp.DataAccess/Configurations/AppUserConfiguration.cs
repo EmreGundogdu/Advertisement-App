@@ -14,7 +14,7 @@ namespace AdvertisementApp.DataAccess.Configurations
         public void Configure(EntityTypeBuilder<AppUser> builder)
         {
             builder.Property(x => x.Firstname).HasMaxLength(300).IsRequired();
-            builder.Property(x => x.Lastname).HasMaxLength(300).IsRequired();
+            builder.Property(x => x.Surname).HasMaxLength(300).IsRequired();
             builder.Property(x => x.Username).HasMaxLength(300).IsRequired();
             builder.Property(x => x.PhoneNumber).HasMaxLength(20).IsRequired();
             builder.Property(x => x.Password).HasMaxLength(50).IsRequired();
