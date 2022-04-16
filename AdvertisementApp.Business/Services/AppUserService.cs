@@ -64,5 +64,15 @@ namespace AdvertisementApp.Business.Services
             }
             return new Response<AppUserListDto>(ResponseType.ValidationError, "Kullanıcı adı veya şifre boş olamaz");
         }
+        public async Task<IResponse<List<AppRoleListDto>>> GetRolesByUserIdAsync(int userId)
+        {
+            var roles = await _unitOfWork.GetRepository<AppRole>().GetAllAsync(x => x.AppUserRoles.Any(x => x.AppUserId == userId));
+            if (roles is null)
+            {
+                return new Response<List<AppRoleListDto>>(ResponseType.NotFound, "İlgili rol bulunamadı.");
+            }
+            var dto = _mapper.Map<List<AppRoleListDto>>(roles);
+            return new Response<List<AppRoleListDto>>(ResponseType.Success, dto);
+        }
     }
 }

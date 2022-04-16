@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace AdvertisementApp.Dtos
 {
-    public class AppUserLoginDto : IDto 
+    public class AppRoleListDto:IDto
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public bool RememberMe { get; set; }
+        public int Id { get; set; }
+        public string Definition { get; set; }
     }
 }
