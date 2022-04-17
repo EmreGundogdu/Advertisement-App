@@ -1,12 +1,14 @@
 ﻿using AdvertisementApp.Business.Interfaces;
 using AdvertisementApp.Common.Enums;
 using AdvertisementApp.Dtos;
+using AdvertisementApp.UI.Extensions;
 using AdvertisementApp.UI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -16,10 +18,12 @@ namespace AdvertisementApp.UI.Controllers
     public class AdvertisementController : Controller
     {
         readonly IAppUserService _appUserService;
+        readonly IAdvertisementAppUserService _advertisementAppUserService;
 
-        public AdvertisementController(IAppUserService appUserService)
+        public AdvertisementController(IAppUserService appUserService, IAdvertisementAppUserService advertisementAppUserService)
         {
             _appUserService = appUserService;
+            _advertisementAppUserService = advertisementAppUserService;
         }
 
         public IActionResult Index()
@@ -54,7 +58,39 @@ namespace AdvertisementApp.UI.Controllers
         [HttpPost]
         public async Task<IActionResult> Send(AdvertisementAppUserCreateModel model)
         {
-            return View();
+            AdvertisementAppUserCreateDto dto = new();
+            if (model.CvFile is not null)
+            {
+                var fileName = Guid.NewGuid().ToString();
+                var extName = Path.GetExtension(model.CvFile.FileName);
+                string path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "cvfiles", fileName + extName);
+                var stream = new FileStream(path, FileMode.Create);
+                await model.CvFile.CopyToAsync(stream);
+                dto.CvPath = path;
+            }
+
+            dto.AdvertisementId = model.AdvertisementId;
+            dto.AdvertisementAppUserStatusId = model.AdvertisementAppUserStatusId;
+            dto.AppUserId = model.AppUserId;
+            dto.EndDate = model.EndDate;
+            dto.MilitaryStatusId = model.MilitaryStatusId;
+            dto.WorkExperience = model.WorkExperience;
+
+
+
+            var response = await _advertisementAppUserService.CreateAsync(dto);
+            if (response.ResponseType == Common.ResponseType.ValidationError)
+            {
+                foreach (var error in response.ValidationErrors)
+                {
+                    ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                }
+                return View(model);
+            }
+            else
+            {
+                return RedirectToAction("HumanResource", "Home");
+            }
         }
     }
 }
