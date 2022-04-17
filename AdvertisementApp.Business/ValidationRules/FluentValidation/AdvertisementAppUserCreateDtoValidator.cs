@@ -16,9 +16,8 @@ namespace AdvertisementApp.Business.ValidationRules.FluentValidation
             RuleFor(x => x.AdvertisementAppUserStatusId).NotEmpty();
             RuleFor(x => x.AdvertisementId).NotEmpty();
             RuleFor(x => x.AppUserId).NotEmpty();
-            RuleFor(x => x.CvFile).NotEmpty();
-            RuleFor(x => x.EndDate).NotEmpty().When(x => x.MilitaryStatusId == (int)MilitaryStatusType.Tecilli);
-            RuleFor(x => x.WorkExperience).NotEmpty();
+            RuleFor(x => x.CvFile).NotEmpty().WithMessage("Bir CV dosyası seçmelisiniz");
+            RuleFor(x => x.EndDate).NotEmpty().When(x => x.MilitaryStatusId == (int)MilitaryStatusType.Tecilli).WithMessage("Tecil tarihi boş bırakılamaz");
         }
     }
 }
