@@ -1,8 +1,12 @@
 ﻿using AdvertisementApp.Business.Interfaces;
+using AdvertisementApp.Common.Enums;
 using AdvertisementApp.Dtos;
 using AdvertisementApp.UI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -28,6 +32,17 @@ namespace AdvertisementApp.UI.Controllers
             var userId = int.Parse((User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)).Value);
             var userResponse = await _appUserService.GetByIdAsync<AppUserListDto>(userId);
             ViewBag.GenderId = userResponse.Data.GenderId;
+            var items = Enum.GetValues(typeof(MilitaryStatusType));
+            var list = new List<MilitaryStatusListDto>();
+            foreach (int item in items)
+            {
+                list.Add(new MilitaryStatusListDto
+                {
+                    Id = item,
+                    Definition = Enum.GetName(typeof(MilitaryStatusType), item)
+                });
+            }
+            ViewBag.MilitaryStatus = new SelectList(list, "Id", "Definition");
             return View(new AdvertisementAppUserCreateModel
             {
                 AdvertisementId = advertisementId,
