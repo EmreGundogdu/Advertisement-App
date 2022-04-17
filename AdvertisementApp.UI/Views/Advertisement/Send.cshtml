@@ -12,7 +12,7 @@
             <select onchange="setInputVisibility()" asp-for="MilitaryStatusId" asp-items="@ViewBag.MilitaryStatus" class="form-select">
             </select>
         </div>
-        <div id="dateDiv" class="mb-3" style="visibility:hidden">
+        <div id="dateDiv" class="mb-3" style="display:none">
             <label>Tecil Tarihi: </label>
             <input type="date" asp-for="EndDate" class="form-control" />
         </div>
@@ -41,10 +41,10 @@
             var militaryStatusId = selectedElement.value;
             var dateDivElement = document.getElementById("dateDiv");
             if (militaryStatusId == 2) {
-                dateDivElement.style.visibility = "visible";
+                dateDivElement.style.display = "block";
 
             } else {
-                dateDivElement.style.visibility = "hidden";
+                dateDivElement.style.display = "none";
             }
         }
     </script>
