@@ -86,8 +86,13 @@ namespace AdvertisementApp.UI.Controllers
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties);
                 return RedirectToAction("Index", "Home");
             }
-            ModelState.AddModelError("", result.Message);
+            ModelState.AddModelError("Kullanıcı adı veya şifre hatalı", result.Message);
             return View(dto);
+        }
+        public async Task<IActionResult> LogOut()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Index", "Home");
         }
     }
 }
