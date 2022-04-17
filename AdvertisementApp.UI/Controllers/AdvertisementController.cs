@@ -50,5 +50,11 @@ namespace AdvertisementApp.UI.Controllers
 
             });
         }
+        [Authorize(Roles = "Member")]
+        [HttpPost]
+        public async Task<IActionResult> Send(AdvertisementAppUserCreateModel model)
+        {
+            return View();
+        }
     }
 }
