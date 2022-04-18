@@ -113,10 +113,10 @@ namespace AdvertisementApp.UI.Controllers
             var list = await _advertisementAppUserService.GetListAsync(AdvertisementAppUserStatusType.Basvurdu);
             return View(list);
         }
-        [Authorize(Roles ="Admin")]
-        public async Task<IActionResult> SetStatuses(int advertisementAppUserId,AdvertisementAppUserStatusType type)
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> SetStatus(int advertisementAppUserId, AdvertisementAppUserStatusType type)
         {
-            await 
+            await _advertisementAppUserService.SetStatusAsync(advertisementAppUserId, type);
             return View();
         }
     }

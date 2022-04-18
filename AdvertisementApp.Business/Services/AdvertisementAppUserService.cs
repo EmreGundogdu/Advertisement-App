@@ -49,13 +49,20 @@ namespace AdvertisementApp.Business.Services
         public async Task<List<AdvertisementAppUserListDto>> GetListAsync(AdvertisementAppUserStatusType type)
         {
             var query = _unitOfWork.GetRepository<AdvertisementAppUser>().GetQuery();
-            var list = await query.Include(x => x.Advertisement).Include(x => x.AdvertisementAppUserStatus).Include(x => x.MilitaryStatus).Include(x => x.AppUser).ThenInclude(x=>x.Gender).Where(x => x.AdvertisementAppUserStatusId == (int)type).ToListAsync();
+            var list = await query.Include(x => x.Advertisement).Include(x => x.AdvertisementAppUserStatus).Include(x => x.MilitaryStatus).Include(x => x.AppUser).ThenInclude(x => x.Gender).Where(x => x.AdvertisementAppUserStatusId == (int)type).ToListAsync();
             return _mapper.Map<List<AdvertisementAppUserListDto>>(list);
         }
-        public async Task SetStatusAsync(int advertisementAppUserId,AdvertisementAppUserStatusType type)
+        public async Task SetStatusAsync(int advertisementAppUserId, AdvertisementAppUserStatusType type)
         {
-            var unchanged = await _unitOfWork.GetRepository<AdvertisementAppUser>().FindAsync(advertisementAppUserId);
-            _unitOfWork.GetRepository<AdvertisementAppUser>().Update(new AdvertisementAppUser { MilitaryStatusId = (int)type, }, unchanged);
+            //    var unchanged = await _unitOfWork.GetRepository<AdvertisementAppUser>().FindAsync(advertisementAppUserId);
+            //    var changed = await _unitOfWork.GetRepository<AdvertisementAppUser>().GetByFilterAsync(x => x.Id == advertisementAppUserId);
+            //    changed.AdvertisementAppUserStatusId = (int)type;
+            //    _unitOfWork.GetRepository<AdvertisementAppUser>().Update(changed, unchanged);
+
+
+            var query = _unitOfWork.GetRepository<AdvertisementAppUser>().GetQuery();
+            var entity = await query.SingleOrDefaultAsync(x => x.Id == advertisementAppUserId);
+            entity.AdvertisementAppUserStatusId = (int)type;
             await _unitOfWork.SaveChangesAsync();
         }
     }
