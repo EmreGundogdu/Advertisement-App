@@ -12,7 +12,7 @@ namespace AdvertisementApp.Dtos
     {
         public int Id { get; set; }
         public int AdvertisementId { get; set; }
-        public AdvertiesementListDto Advertisement { get; set; }
+        public AdvertisementListDto Advertisement { get; set; }
         public int AppUserId { get; set; }
         public AppUserListDto AppUser { get; set; }
         public int AdvertisementAppUserStatusId { get; set; }

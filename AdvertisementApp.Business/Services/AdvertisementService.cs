@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace AdvertisementApp.Business.Services
 {
-    public class AdvertisementService : GenericService<AdvertisementCreateDto, AdvertisementUpdateDto, AdvertiesementListDto, Advertisement>, IAdvertisementService
+    public class AdvertisementService : GenericService<AdvertisementCreateDto, AdvertisementUpdateDto, AdvertisementListDto, Advertisement>, IAdvertisementService
     {
         readonly IUnitOfWork _unitOfWork;
         readonly IMapper _mapper;
@@ -22,11 +22,11 @@ namespace AdvertisementApp.Business.Services
             _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
-        public async Task<IResponse<List<AdvertiesementListDto>>> GetActivesAsync()
+        public async Task<IResponse<List<AdvertisementListDto>>> GetActivesAsync()
         {
             var data = await _unitOfWork.GetRepository<Advertisement>().GetAllAsync(x => x.Status == true, x => x.CreatedTime, Common.Enums.OrderByType.DESC);
-            var dto = _mapper.Map<List<AdvertiesementListDto>>(data);
-            return new Response<List<AdvertiesementListDto>>(ResponseType.Success, dto);
+            var dto = _mapper.Map<List<AdvertisementListDto>>(data);
+            return new Response<List<AdvertisementListDto>>(ResponseType.Success, dto);
         }
     }
 }

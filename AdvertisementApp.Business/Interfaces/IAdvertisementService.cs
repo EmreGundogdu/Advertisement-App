@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace AdvertisementApp.Business.Interfaces
 {
-    public interface IAdvertisementService : IGenericService<AdvertisementCreateDto, AdvertisementUpdateDto, AdvertiesementListDto, Advertisement>
+    public interface IAdvertisementService : IGenericService<AdvertisementCreateDto, AdvertisementUpdateDto, AdvertisementListDto, Advertisement>
     {
-        Task<IResponse<List<AdvertiesementListDto>>> GetActivesAsync();
+        Task<IResponse<List<AdvertisementListDto>>> GetActivesAsync();
     }
 }

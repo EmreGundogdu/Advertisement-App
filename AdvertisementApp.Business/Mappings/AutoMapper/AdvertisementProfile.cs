@@ -13,7 +13,7 @@ namespace AdvertisementApp.Business.Mappings.AutoMapper
     {
         public AdvertisementProfile()
         {
-            CreateMap<Advertisement, AdvertiesementListDto>().ReverseMap();
+            CreateMap<Advertisement, AdvertisementListDto>().ReverseMap();
             CreateMap<Advertisement, AdvertisementCreateDto>().ReverseMap();
             CreateMap<Advertisement, AdvertisementUpdateDto>().ReverseMap();
         }
