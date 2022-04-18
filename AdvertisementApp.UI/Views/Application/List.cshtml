@@ -24,8 +24,8 @@
                         <td>@advertisement.CreatedTime.ToString("dddd, dd MM yyyy")</td>
                         <td>@(advertisement.Status?"Aktif":"Pasif")</td>
                         <td>
-                            <a asp-action="Update" asp-controller="Application">Güncelle</a> |
-                            <a asp-action="Remove" asp-controller="Application" >Sil</a> 
+                            <a asp-action="Update" asp-controller="Application" asp-route-id="@advertisement.Id">Güncelle</a> |
+                            <a asp-action="Remove" asp-controller="Application" asp-route-id="@advertisement.Id">Sil</a>
                         </td>
                     </tr>
                 }
@@ -34,10 +34,10 @@
     }
     else
     {
-<div class="text-end my-3 p-2">
-    <a asp-action="Create" asp-controller="Application">Yeni lan Oluştur</a>
+        <div class="text-end my-3 p-2">
+            <a asp-action="Create" asp-controller="Application">Yeni lan Oluştur</a>
 
-</div>
+        </div>
         <div class="mt-3 text-center lead">Herhangi bir ilan bulunmamaktadır.</div>
     }
 </div>
