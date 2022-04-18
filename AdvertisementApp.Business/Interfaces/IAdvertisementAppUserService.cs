@@ -1,4 +1,5 @@
 ﻿using AdvertisementApp.Common;
+using AdvertisementApp.Common.Enums;
 using AdvertisementApp.Dtos;
 using System;
 using System.Collections.Generic;
@@ -11,5 +12,7 @@ namespace AdvertisementApp.Business.Interfaces
     public interface IAdvertisementAppUserService
     {
         Task<IResponse<AdvertisementAppUserCreateDto>> CreateAsync(AdvertisementAppUserCreateDto dto);
+        Task<List<AdvertisementAppUserListDto>> GetListAsync(AdvertisementAppUserStatusType type);
+        Task SetStatusAsync(int advertisementAppUserId, AdvertisementAppUserStatusType type);
     }
 }

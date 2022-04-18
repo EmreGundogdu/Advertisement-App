@@ -85,12 +85,39 @@ namespace AdvertisementApp.UI.Controllers
                 {
                     ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
                 }
+                var userId = int.Parse((User.Claims.FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)).Value);
+                var userResponse = await _appUserService.GetByIdAsync<AppUserListDto>(userId);
+                ViewBag.GenderId = userResponse.Data.GenderId;
+
+                var items = Enum.GetValues(typeof(MilitaryStatusType));
+                var list = new List<MilitaryStatusListDto>();
+                foreach (int item in items)
+                {
+                    list.Add(new MilitaryStatusListDto
+                    {
+                        Id = item,
+                        Definition = Enum.GetName(typeof(MilitaryStatusType), item)
+                    });
+                }
+                ViewBag.MilitaryStatus = new SelectList(list, "Id", "Definition");
                 return View(model);
             }
             else
             {
                 return RedirectToAction("HumanResource", "Home");
             }
+        }
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> List()
+        {
+            var list = await _advertisementAppUserService.GetListAsync(AdvertisementAppUserStatusType.Basvurdu);
+            return View(list);
+        }
+        [Authorize(Roles ="Admin")]
+        public async Task<IActionResult> SetStatuses(int advertisementAppUserId,AdvertisementAppUserStatusType type)
+        {
+            await 
+            return View();
         }
     }
 }
